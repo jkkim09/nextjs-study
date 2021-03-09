@@ -1,0 +1,13 @@
+$color-primary: blueviolet;
+$color-secondary: cyan;
+
+.title {
+  font-size: 30px;
+  color: $color-primary;
+  border-bottom: solid 2px darken($color-primary, 10);
+
+  strong {
+    color: $color-secondary;
+  }
+
+}

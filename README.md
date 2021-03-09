@@ -1,34 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 설치
 
-## Getting Started
+### next 프로젝트 시작
 
-First, run the development server:
+````
+npx create-next-app .
+````
+' . ' 을 붙이면 현재 드렉토리 안에서 프로젝트가 설치된다.  
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### typescript 설정
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+````npm
+ npm install --save-dev typescript @types/react @types/react-dom @types/node
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+ npm run dev
+````
+npm run dev 를 실행하면 next-env.d.ts 파일과 tsconfig.json 파일이 생성된다.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+typescript 를 사용하려면 파일명이 tsx(_app.js -> _app.tsx)로 바꾼 후 사용 할 수있다.
 
-## Learn More
+### Style Components 설정
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+````
+npm i styled-components @types/styled-components styled-reset
+````

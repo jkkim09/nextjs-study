@@ -1,4 +1,8 @@
 import Head from 'next/head'
+
+import { useDispatch, useSelector } from 'react-redux';
+import { countUp } from 'store/actions/count';
+
 import styles from 'styles/Home.module.css'
 import styled from 'styled-components';
 import teststyles from 'styles/Test.module.scss'
@@ -15,9 +19,16 @@ const ButtonTest = styled.button`
 `
 
 export default function Home() {
+  const dispatch = useDispatch();
+  const count = useSelector(state => state['counter'])
+
+  const test = () => {
+    dispatch(countUp())
+  }
+
   return (
     <NavbarWrapper>
-        <ButtonTest>test</ButtonTest>
+        <ButtonTest onClick={test}>test{count.value}</ButtonTest>
         <div className={styles.container}>
         <Head>
           <title>Create Next App</title>

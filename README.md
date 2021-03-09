@@ -24,3 +24,11 @@ typescript 를 사용하려면 파일명이 tsx(_app.js -> _app.tsx)로 바꾼 �
 ````
 npm i styled-components @types/styled-components styled-reset
 ````
+
+### redux 설정
+
+````
+npm install redux react-redux
+npm install next-redux-wrapper
+npm install -d redux-devtools-extension @types/next-redux-wrapper @types/react-redux 
+````

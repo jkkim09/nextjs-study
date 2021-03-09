@@ -1,12 +1,12 @@
 import { AppProps } from 'next/app'
 import {ThemeProvider} from 'styled-components';
-import Head from 'next/head';
+import { wrapper } from 'store';
 
 // import '../styles/globals.css'
 import GlobalStyle from 'styles/global-styles';
 import {theme} from 'styles/theme';
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -15,4 +15,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)

@@ -1,11 +1,8 @@
 import { combineReducers } from "redux";
 import counter from "./counter";
-import { CounterState } from 'store/types/state';
-
-export type RootState = {
-    counter: CounterState
-}
+import search from "./search";
 
 export default combineReducers({
-    counter: counter
+    counter: counter,
+    search: search
 })

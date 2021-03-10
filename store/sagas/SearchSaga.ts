@@ -9,14 +9,10 @@ function searchAPI(data) {
 
 function* fetchSearchSaga(action) {
     try {
-        const json = {
-            name: action.payload
-        }
         const { data } = yield call(searchAPI, action.data)
-        console.log(data)
         yield put(actions.searchSuccess(data));
     } catch (error) {
-        yield put(actions.searchFail('error test'));
+        yield put(actions.searchFail('error'));
     }
 }
 

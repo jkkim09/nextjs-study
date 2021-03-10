@@ -32,3 +32,11 @@ npm install redux react-redux
 npm install next-redux-wrapper
 npm install -d redux-devtools-extension @types/next-redux-wrapper @types/react-redux 
 ````
+
+### redux-saga 설정
+
+````
+npm install redux-saga
+````
+
+redux-saga는 redux 의 미들웨어로 사용된다.

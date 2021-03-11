@@ -28,8 +28,7 @@ npm i styled-components @types/styled-components styled-reset
 ### redux 설정
 
 ````
-npm install redux react-redux
-npm install next-redux-wrapper
+npm install redux react-redux next-redux-wrapper
 npm install -d redux-devtools-extension @types/next-redux-wrapper @types/react-redux 
 ````
 

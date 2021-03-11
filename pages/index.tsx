@@ -2,35 +2,33 @@ import Head from 'next/head'
 
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { countUp } from 'store/actions/count';
+import {RootState} from 'store/reducers'
+import { countUp, countDown } from 'store/actions/count';
 import { search } from 'store/actions/search';
 
 
 import styles from 'styles/Home.module.css'
 import styled from 'styled-components';
-import teststyles from 'styles/Test.module.scss'
+import { wrapper } from '../store';
 
 const NavbarWrapper = styled.div`
-  background-color: red;
+  background-color: #ededed;
   padding: ${({ theme }) => theme.colors.black}
 `
-
-const ButtonTest = styled.button`
-  width: 100px;
-  height: 50px;
-  background-color: #ededed;
-`
-
-export default function Home() {
+const Home = () => {
   const dispatch = useDispatch();
-  const count = useSelector(state => state['counter'])
-  const searchData = useSelector(state => state['search'])
+  const {value} = useSelector((state: RootState) => state.counter)
+  const searchData = useSelector((state: RootState) => state.search)
 
-  const test = () => {
+  const upEvent = useCallback(() => {
     dispatch(countUp())
-  }
+  }, [])
 
-  const test2 = useCallback(() => {
+  const downEvent = useCallback(() => {
+    dispatch(countDown())
+  }, [])
+
+  const searchEvent = useCallback(() => {
     dispatch(search({test: 'test1'})) 
     //'superman'
   }, [])
@@ -41,9 +39,14 @@ export default function Home() {
           <title>Create Next App</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <ButtonTest onClick={test}>test{count.value}</ButtonTest>
-        <ButtonTest onClick={test2}>test2</ButtonTest>
-        <div className={styles.container}>
+        <div className={styles.home}>
+          <div className={styles['counter__text']}>{value}</div>
+          <div className={styles['button__area']}>
+            <button onClick={upEvent}>Up</button>
+            <button onClick={downEvent}>Down</button>
+          </div>
+          <button onClick={searchEvent}>Search</button>
+        </div>
         {searchData.data && (
         <div>
           {searchData.data.map((show, index) => (
@@ -56,8 +59,19 @@ export default function Home() {
           ))}
         </div>
       )}
-
-      </div>
     </NavbarWrapper>
   )
 }
+
+export default Home
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  async (context) => {
+
+    const returnData = await context.store.dispatch(search({test: 'test1'}));
+
+    return {
+      props: {}, // will be passed to the page component as props
+    };
+  }
+);

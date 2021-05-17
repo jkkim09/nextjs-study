@@ -1,0 +1,28 @@
+ node {
+    stage('SOURCE CHECKOUT') {
+        def repo = checkout scm
+    }
+    
+    stage ('echo1') {
+        echo 'test echo 1'
+    }
+    
+    stage ('echo2') {
+        echo 'test echo 2'
+    }
+    
+    stage ('echo3') {
+        echo 'test echo 3'
+    }
+    
+    stage ('docker') {
+        sh 'docker ps'
+        sh 'ls'
+        echo 'test docker'
+        sh 'docker build --tag test:0.2 .'
+    }
+    
+    stage ('end') {
+        echo 'BUILD END'
+    }
+}

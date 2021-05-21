@@ -18,7 +18,7 @@
     }
 
     stage ('docker run') {
-        sh "docker run -d --network cw-net --name test1 test:${imgVersion}"
+        sh "docker run -d -p 3000:80 --network cw-net --name test1 test:${imgVersion}"
     }
 
     stage ('end') {

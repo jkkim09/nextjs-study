@@ -1,28 +1,27 @@
  node {
+    def imgVersion
+    
     stage('SOURCE CHECKOUT') {
         def repo = checkout scm
     }
-    
-    stage ('echo1') {
-        echo 'test echo 1'
-    }
-    
-    stage ('echo2') {
-        echo 'test echo 2'
-    }
-    
-    stage ('echo3') {
-        echo 'test echo 3'
-    }
-    
+
     stage ('docker') {
-        sh 'docker ps'
-        sh 'ls'
-        echo 'test docker'
-        sh 'docker build --tag test:0.2 .'
+        sh "docker ps"
+        imgVersion = sh(returnStdout: true, script: "cat ./package.json | grep version | head -1 | awk '{ print \$2 }' | sed 's/[\",]//g'").trim()
+
+        sh "docker build -t test:${imgVersion} ." 
+        sh "docker images"
     }
-    
+
+    stage ('docker stop') {
+        sh "docker stop test1;docker rm test1"
+    }
+
+    stage ('docker run') {
+        sh "docker run -d --network cw-net --name test1 test:${imgVersion}"
+    }
+
     stage ('end') {
-        echo 'BUILD END'
+        echo "BUILD END"
     }
 }

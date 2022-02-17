@@ -12,6 +12,7 @@ const bindMiddleware = (middleware: Middleware[]): StoreEnhancer => {
     return applyMiddleware(...middleware);
 }
 
+// redux 와 redux-saga 를 연결하는 middleware
 const makeStore: MakeStore<{}> = () => {
     const sagaMiddleware = createSagaMiddleware();
     const middlewares = [sagaMiddleware];

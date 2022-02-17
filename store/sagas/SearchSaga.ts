@@ -21,5 +21,6 @@ function* fetchSearchSaga(action) {
  * 이벤트기 감지되었을때 동작한다.
  */
 export default function* watchSearch() {
+    // 엑션 타입이 SEARCH 였을때 동작하는 발생
     yield takeEvery(SEARCH, fetchSearchSaga);
 }

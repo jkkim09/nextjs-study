@@ -15,9 +15,10 @@ const NavbarWrapper = styled.div`
   background-color: #ededed;
   padding: ${({ theme }) => theme.colors.black}
 `
-const Home = () => {
+const Home = (ee) => {
+  console.log('test3', ee)
   const dispatch = useDispatch();
-  const {value} = useSelector((state: RootState) => state.counter)
+  const { value } = useSelector((state: RootState) => state.counter)
   const searchData = useSelector((state: RootState) => state.search)
 
   const upEvent = useCallback(() => {
@@ -29,8 +30,8 @@ const Home = () => {
   }, [])
 
   const searchEvent = useCallback(() => {
-    dispatch(search({test: 'test1'})) 
-    //'superman'
+    dispatch(search({ test: 'test1' })) 
+    //'superman' 
   }, [])
 
   return (
@@ -47,18 +48,21 @@ const Home = () => {
           </div>
           <button onClick={searchEvent}>Search</button>
         </div>
-        {searchData.data && (
-        <div>
-          {searchData.data.map((show, index) => (
-            <div key={index}>
-              <a href={show.url}>{show.name}</a>
-              <div>점수 : {show.score}</div>
-              <div>타입 : {show.type}</div>
-              <div>언어 : {show.language}</div>
-            </div>
-          ))}
-        </div>
-      )}
+        {
+          searchData.data &&
+          <div>
+            {
+              searchData.data.map((show, index) => (
+                <div key={index}>
+                  <a href={show.url}>{show.name}</a>
+                  <div>점수 : {show.score}</div>
+                  <div>타입 : {show.type}</div>
+                  <div>언어 : {show.language}</div>
+                </div>
+              ))
+            }
+          </div>
+        }
     </NavbarWrapper>
   )
 }
@@ -67,11 +71,12 @@ export default Home
 
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
-
     const returnData = await context.store.dispatch(search({test: 'test1'}));
-
     return {
-      props: {}, // will be passed to the page component as props
+      props: {
+        value: "testValue",
+        apiData: "1111"
+      }, // will be passed to the page component as props
     };
   }
 );

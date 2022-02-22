@@ -12,9 +12,9 @@ function* fetchSearchSaga(action) {
         // action 의 정보
         // payload: {test: 'test1'}
         // type: "SEARCH"
-        const { data } = yield call(searchAPI, action.data)
-        console.log(action)
+        const {data}  = yield call(searchAPI, action.data)
         // redux 의 상태 변경
+        // type: "SEARCH_SUCCESS"
         yield put(actions.searchSuccess(data));
     } catch (error) {
         yield put(actions.searchFail('error'));
